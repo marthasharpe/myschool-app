@@ -6,6 +6,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabs from "./navigation/BottomTabs";
+import FABButton from "./components/FABButton";
 
 const theme = {
   ...DefaultTheme,
@@ -18,14 +19,15 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <Appbar.Header>
+    <NavigationContainer>
+      <PaperProvider theme={theme}>
+        <Appbar.Header statusBarHeight={32}>
           <Appbar.Content title="MySchool" />
         </Appbar.Header>
+        <FABButton />
         <BottomTabs />
         <StatusBar style="light" />
-      </NavigationContainer>
-    </PaperProvider>
+      </PaperProvider>
+    </NavigationContainer>
   );
 }

@@ -10,7 +10,7 @@ const Tab = createMaterialBottomTabNavigator();
 const BottomTabs = () => {
   const { colors } = useTheme();
   return (
-    <Tab.Navigator barStyle={{ backgroundColor: colors.primary }}>
+    <Tab.Navigator barStyle={{ backgroundColor: colors.primary, height: 72 }}>
       <Tab.Screen
         name="Dashboard"
         options={{ tabBarIcon: "home-account" }}
