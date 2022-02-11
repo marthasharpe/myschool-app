@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 
-const HomeScreen = () => {
+const DashboardScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>My Home</Text>
+      <Text>My Dashboard</Text>
     </View>
   );
 };
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default DashboardScreen;

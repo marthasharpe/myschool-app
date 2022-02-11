@@ -1,9 +1,9 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { useTheme } from "react-native-paper";
-import HomeScreen from "../screens/HomeScreen";
-import ResourcesScreen from "../screens/ResourcesScreen";
-import SubjectsScreen from "../screens/SubjectsScreen";
-import TodosScreen from "../screens/TodosScreen";
+import DashboardScreen from "screens/dashboard/DashboardScreen";
+import ResourcesScreen from "screens/resources/ResourcesScreen";
+import SubjectsScreen from "screens/subjects/SubjectsScreen";
+import TodosScreen from "screens/todos/TodosScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -14,7 +14,7 @@ const BottomTabs = () => {
       <Tab.Screen
         name="Dashboard"
         options={{ tabBarIcon: "home-account" }}
-        component={HomeScreen}
+        component={DashboardScreen}
       />
       <Tab.Screen
         name="Resources"

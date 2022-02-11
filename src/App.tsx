@@ -5,8 +5,10 @@ import {
 } from "react-native-paper";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabs from "./navigation/BottomTabs";
-import FABButton from "./components/FABButton";
+import { store } from "./store";
+import { Provider } from "react-redux";
+import BottomTabs from "navigation/BottomTabs";
+import FABButton from "components/FABButton";
 
 const theme = {
   ...DefaultTheme,
@@ -18,16 +20,19 @@ const theme = {
 };
 
 export default function App() {
+  console.log("running");
   return (
-    <NavigationContainer>
+    <Provider store={store}>
       <PaperProvider theme={theme}>
-        <Appbar.Header statusBarHeight={32}>
-          <Appbar.Content title="MySchool" />
-        </Appbar.Header>
-        <FABButton />
-        <BottomTabs />
-        <StatusBar style="light" />
+        <NavigationContainer>
+          <Appbar.Header statusBarHeight={32}>
+            <Appbar.Content title="MySchool" />
+          </Appbar.Header>
+          <FABButton />
+          <BottomTabs />
+          <StatusBar style="light" />
+        </NavigationContainer>
       </PaperProvider>
-    </NavigationContainer>
+    </Provider>
   );
 }
