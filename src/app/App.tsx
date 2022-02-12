@@ -1,14 +1,9 @@
-import {
-  Appbar,
-  DefaultTheme,
-  Provider as PaperProvider,
-} from "react-native-paper";
-import { StatusBar } from "expo-status-bar";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import BottomTabs from "navigation/BottomTabs";
-import FABButton from "components/FABButton";
+import { registerRootComponent } from "expo";
+import RootNavigator from "navigation/RootNavigator";
 
 const theme = {
   ...DefaultTheme,
@@ -19,20 +14,17 @@ const theme = {
   },
 };
 
-export default function App() {
+const App = () => {
   console.log("running");
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>
         <NavigationContainer>
-          <Appbar.Header statusBarHeight={32}>
-            <Appbar.Content title="MySchool" />
-          </Appbar.Header>
-          <FABButton />
-          <BottomTabs />
-          <StatusBar style="light" />
+          <RootNavigator />
         </NavigationContainer>
       </PaperProvider>
     </Provider>
   );
-}
+};
+
+export default registerRootComponent(App);
