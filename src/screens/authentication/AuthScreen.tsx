@@ -4,16 +4,17 @@ import {
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StyleSheet,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import { useStyles } from "./styles";
 
 const AuthScreen = () => {
   const [emailInput, setEmailInput] = React.useState("");
   const [passwordInput, setPasswordInput] = React.useState("");
   const [error, setError] = React.useState(false);
+  const styles = useStyles();
 
   return (
     <KeyboardAvoidingView
@@ -58,26 +59,5 @@ const AuthScreen = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  input: {
-    marginVertical: 20,
-    width: "80%",
-    maxWidth: 320,
-    alignSelf: "center",
-  },
-  button: {
-    marginVertical: 20,
-    width: "80%",
-    maxWidth: 320,
-    alignSelf: "center",
-    borderRadius: 20,
-    padding: 4,
-  },
-});
 
 export default AuthScreen;
