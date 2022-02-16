@@ -15,7 +15,6 @@ const theme = {
 };
 
 const App = () => {
-  console.log("running");
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>

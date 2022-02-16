@@ -2,21 +2,22 @@ import { StyleSheet } from "react-native";
 
 export const useStyles = () =>
   StyleSheet.create({
-    container: {
+    screen: {
       flex: 1,
       justifyContent: "center",
     },
-    input: {
-      marginVertical: 20,
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignSelf: "center",
       width: "80%",
       maxWidth: 320,
-      alignSelf: "center",
+    },
+    input: {
+      marginTop: 20,
     },
     button: {
-      marginVertical: 20,
-      width: "80%",
-      maxWidth: 320,
-      alignSelf: "center",
+      marginTop: 20,
       borderRadius: 20,
       padding: 4,
     },

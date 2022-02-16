@@ -1,20 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "utils/axios";
-
-export interface AuthenticationState {
-  token: string | null;
-  isAuthenticated: boolean;
-}
+import { createAction, createSlice } from "@reduxjs/toolkit";
+import { AuthenticationState } from "types/types";
 
 const initialState: AuthenticationState = {
   token: null,
-  isAuthenticated: false,
+  user: null,
 };
+
+export const setAuthData = createAction<AuthenticationState>("setAuthData");
 
 export const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(setAuthData, (state, action) => {
+      state.token = action.payload.token;
+      state.user = action.payload.user;
+    });
+  },
 });
 
 export default authenticationSlice.reducer;
