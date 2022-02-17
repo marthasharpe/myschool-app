@@ -1,4 +1,4 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthenticationState } from "types/types";
 
 const initialState: AuthenticationState = {
@@ -7,6 +7,7 @@ const initialState: AuthenticationState = {
 };
 
 export const setAuthData = createAction<AuthenticationState>("setAuthData");
+export const logout = createAction("logout");
 
 export const authenticationSlice = createSlice({
   name: "authentication",
@@ -16,6 +17,9 @@ export const authenticationSlice = createSlice({
     builder.addCase(setAuthData, (state, action) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
+    });
+    builder.addCase(logout, () => {
+      return initialState;
     });
   },
 });
