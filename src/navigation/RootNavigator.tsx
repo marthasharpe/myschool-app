@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { RootState } from "app/store";
-import AuthScreen from "screens/authentication/AuthScreen";
 import HomeScreen from "screens/home/HomeScreen";
+import AuthNavigator from "./AuthNavigator";
 
 const RootStack = createNativeStackNavigator();
 
@@ -16,7 +16,7 @@ const RootNavigator = () => {
       }}
     >
       {!token ? (
-        <RootStack.Screen name="Auth" component={AuthScreen} />
+        <RootStack.Screen name="Auth" component={AuthNavigator} />
       ) : (
         <RootStack.Screen name="Home" component={HomeScreen} />
       )}

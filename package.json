@@ -18,7 +18,8 @@
     "@reduxjs/toolkit": "^1.7.2",
     "axios": "^0.25.0",
     "expo": "~44.0.0",
-    "expo-secure-store": "~11.1.0",
+    "expo-linear-gradient": "~11.0.3",
+    "expo-secure-store": "^11.1.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
     "react-devtools": "~4.14.0",
@@ -38,7 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
-    "@types/react-native": "~0.64.12",
+    "@types/react-native": "^0.64.23",
     "@types/react-native-dotenv": "^0.2.0",
     "@types/react-redux": "^7.1.22",
     "typescript": "~4.3.5"

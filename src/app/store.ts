@@ -10,6 +10,8 @@ const storage = createSecureStore();
 const persistConfig = {
   key: "root",
   storage,
+  whiteList: ["auth"],
+  blacklist: ["api"],
 };
 
 const rootReducer = {
@@ -21,7 +23,7 @@ const persistedReducer = persistCombineReducers(persistConfig, rootReducer);
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(api.middleware),
   reducer: persistedReducer,
 });
 
@@ -29,7 +31,5 @@ export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

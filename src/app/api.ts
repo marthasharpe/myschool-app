@@ -24,6 +24,13 @@ export const api = createApi({
         body: { email, password },
       }),
     }),
+    signup: builder.mutation({
+      query: ({ email, password }) => ({
+        url: "/users/signup/",
+        method: "POST",
+        body: { email, password },
+      }),
+    }),
     getResources: builder.query({
       query: (userId) => ({
         url: `/resources/${userId}`,
@@ -41,5 +48,9 @@ export const api = createApi({
   }),
 });
 
-export const { useLoginMutation, useGetResourcesQuery, useGetSubjectsQuery } =
-  api;
+export const {
+  useLoginMutation,
+  useSignupMutation,
+  useGetResourcesQuery,
+  useGetSubjectsQuery,
+} = api;
