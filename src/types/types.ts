@@ -8,6 +8,7 @@ export interface User {
 
 export interface AuthenticationState {
   token: string | null;
+  refreshToken: string | null;
   user: User | null;
 }
 

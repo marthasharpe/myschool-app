@@ -1,4 +1,4 @@
-import { useGetSubjectsQuery } from "app/api";
+import { useGetResourcesQuery, useGetSubjectsQuery } from "app/api";
 import { RootState } from "app/store";
 import { StyleSheet, Text, View } from "react-native";
 import { ActivityIndicator, Button } from "react-native-paper";
@@ -7,7 +7,13 @@ import { Subject } from "types/types";
 
 const SubjectsScreen = () => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
-  const { data, error, isLoading, refetch } = useGetSubjectsQuery(userId);
+  const {
+    data: subjectData,
+    error,
+    isLoading,
+    refetch,
+  } = useGetSubjectsQuery(userId);
+  // const { data: resourceData } = useGetResourcesQuery(userId);
 
   return (
     <View style={styles.container}>
@@ -18,8 +24,8 @@ const SubjectsScreen = () => {
           <Button onPress={() => refetch()}>Retry</Button>
         </>
       )}
-      {data &&
-        data.subjects.map((subject: Subject) => (
+      {subjectData &&
+        subjectData.subjects.map((subject: Subject) => (
           <Text key={subject._id}>{subject.name}</Text>
         ))}
     </View>
