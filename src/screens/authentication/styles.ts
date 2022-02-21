@@ -17,7 +17,6 @@ export const useStyles = (props?: Theme) =>
     },
     helperTextContainer: {
       marginTop: 4,
-      // height: 20,
     },
     helperText: {
       color: props?.colors.error,

@@ -15,6 +15,7 @@ const LandingScreen = ({ navigation }: Props) => {
   return (
     <LinearGradient
       colors={[theme.colors.primary, theme.colors.background]}
+      locations={[0.2, 0.8]}
       style={styles.screen}
     >
       <SafeAreaView style={styles.container}>
