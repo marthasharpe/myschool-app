@@ -1,20 +1,44 @@
 import * as React from "react";
-import { ListRenderItem } from "react-native";
-import { List } from "react-native-paper";
-import { Subject } from "types/types";
+import { FlatList, ListRenderItem } from "react-native";
+import { IconButton, List } from "react-native-paper";
+import { Resource, Subject } from "types/types";
 
-const SubjectAccordion: ListRenderItem<Subject> = ({ item }) => {
-  const [expanded, setExpanded] = React.useState(true);
+interface Props {
+  item: ListRenderItem<Subject>;
+  resources: Resource[];
+}
+
+const SubjectAccordion = ({ item, resources }: Props) => {
+  const [expanded, setExpanded] = React.useState(false);
   const handlePress = () => setExpanded(!expanded);
+
+  const subjectResources = resources?.filter((resource: Resource) => {
+    return resource.subject === item.name;
+  });
+
   return (
     <List.Accordion
       title={item.name}
       left={(props) => <List.Icon {...props} icon="folder" />}
+      right={(props) => (
+        <IconButton {...props} icon={expanded ? "minus" : "plus"} />
+      )}
       expanded={expanded}
       onPress={handlePress}
     >
-      <List.Item title="First item" />
-      <List.Item title="Second item" />
+      <FlatList
+        data={subjectResources}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <List.Item
+            title={item.title}
+            titleNumberOfLines={2}
+            onPress={() => console.log("resource details")}
+            description={item.description}
+            right={(props) => <List.Icon {...props} icon="chevron-right" />}
+          />
+        )}
+      />
     </List.Accordion>
   );
 };

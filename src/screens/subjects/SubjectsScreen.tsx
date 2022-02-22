@@ -3,7 +3,6 @@ import { RootState } from "app/store";
 import { StyleSheet, Text, FlatList, SafeAreaView, View } from "react-native";
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { Subject } from "types/types";
 import SubjectAccordion from "components/SubjectAccordion";
 
 const SubjectsScreen = () => {
@@ -14,30 +13,32 @@ const SubjectsScreen = () => {
     isLoading,
     refetch,
   } = useGetSubjectsQuery(userId);
-  // const { data: resourceData } = useGetResourcesQuery(userId);
+  const { data: resourceData } = useGetResourcesQuery(userId);
 
   if (error) {
     return (
       <View style={styles.container}>
         <Text>Failed to load subjects</Text>
-        <Button onPress={() => refetch()}>Retry</Button>
+        <Button onPress={refetch}>Retry</Button>
       </View>
     );
   }
 
-  if (subjectData) {
-    return (
-      <SafeAreaView>
+  return (
+    <SafeAreaView>
+      {subjectData && (
         <FlatList
           data={subjectData.subjects}
-          renderItem={({ item }) => <SubjectAccordion item={item} />}
+          renderItem={({ item }) => (
+            <SubjectAccordion resources={resourceData.resources} item={item} />
+          )}
           keyExtractor={(item) => item._id}
-          onRefresh={() => refetch()}
+          onRefresh={refetch}
           refreshing={isLoading}
         />
-      </SafeAreaView>
-    );
-  }
+      )}
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
