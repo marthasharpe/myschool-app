@@ -15,7 +15,6 @@ export interface AuthenticationState {
 export interface Resource {
   description: string;
   link: string;
-  status: string;
   subject: string;
   title: string;
   _id: string;

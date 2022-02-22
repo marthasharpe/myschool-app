@@ -1,36 +1,41 @@
 import { useGetResourcesQuery } from "app/api";
 import { RootState } from "app/store";
-import { StyleSheet, Text, View } from "react-native";
-import { ActivityIndicator, Button } from "react-native-paper";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { Resource } from "types/types";
+import ResourceCard from "components/ResourceCard";
 
 const ResourcesScreen = () => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
   const { data, error, isLoading, refetch } = useGetResourcesQuery(userId);
-
-  return (
-    <View style={styles.container}>
-      {isLoading && <ActivityIndicator />}
-      {error && (
-        <>
-          <Text>Failed to load resources</Text>
-          <Button onPress={() => refetch()}>Retry</Button>
-        </>
-      )}
-      {data &&
-        data.resources.map((resource: Resource) => (
-          <Text key={resource._id}>{resource.title}</Text>
-        ))}
-    </View>
-  );
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>Failed to load resources</Text>
+        <Button onPress={() => refetch()}>Retry</Button>
+      </View>
+    );
+  }
+  if (data) {
+    return (
+      <SafeAreaView>
+        <FlatList
+          data={data.resources}
+          renderItem={({ item }) => <ResourceCard item={item} />}
+          keyExtractor={(item) => item._id}
+          onRefresh={() => refetch()}
+          refreshing={isLoading}
+        />
+      </SafeAreaView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
 });
 
