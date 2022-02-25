@@ -67,9 +67,8 @@ const LoginScreen = () => {
       });
       if ("data" in result) {
         const token = result.data.token;
-        const refreshToken = result.data.refreshToken;
         const user = result.data.user;
-        dispatch(setAuthData({ token, refreshToken, user }));
+        dispatch(setAuthData({ token, user }));
       }
       if ("error" in result) {
         setErrorDialogueMessage(result.error.data.message);

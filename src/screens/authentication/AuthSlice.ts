@@ -3,7 +3,6 @@ import { AuthenticationState } from "types/types";
 
 const initialState: AuthenticationState = {
   token: null,
-  refreshToken: null,
   user: null,
 };
 
@@ -17,7 +16,6 @@ export const authenticationSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(setAuthData, (state, action) => {
       state.token = action.payload.token;
-      state.refreshToken = action.payload.refreshToken;
       state.user = action.payload.user;
     });
     builder.addCase(logout, () => {

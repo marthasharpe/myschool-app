@@ -1,6 +1,6 @@
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button, IconButton } from "react-native-paper";
+import { IconButton } from "react-native-paper";
 import LandingScreen from "screens/authentication/LandingScreen";
 import LoginScreen from "screens/authentication/LoginScreen";
 import SignupScreen from "screens/authentication/SignupScreen";
