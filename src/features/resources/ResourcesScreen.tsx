@@ -1,13 +1,14 @@
 import { useGetResourcesQuery } from "app/api";
 import { RootState } from "app/store";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Button } from "react-native-paper";
+import { Button, ActivityIndicator } from "react-native-paper";
 import { useSelector } from "react-redux";
 import ResourceListItem from "features/resources/ResourceListItem";
 
 const ResourcesScreen = () => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
   const { data, error, isLoading, refetch } = useGetResourcesQuery(userId);
+
   if (error) {
     return (
       <View style={styles.container}>
@@ -16,6 +17,15 @@ const ResourcesScreen = () => {
       </View>
     );
   }
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView>
       {data && (

@@ -2,14 +2,15 @@ import * as React from "react";
 import { FlatList, ListRenderItem } from "react-native";
 import { IconButton, List } from "react-native-paper";
 import { Resource, Subject } from "types/types";
-import DeleteSubjectButton from "./DeleteSubject";
+import DeleteSubjectButton from "./DeleteSubjectButton";
 
 interface Props {
   item: ListRenderItem<Subject>;
   resources: Resource[];
+  refetchSubjects: () => void;
 }
 
-const SubjectAccordion = ({ item, resources }: Props) => {
+const SubjectAccordion = ({ item, resources, refetchSubjects }: Props) => {
   const [expanded, setExpanded] = React.useState(false);
   const handlePress = () => setExpanded(!expanded);
 
@@ -39,7 +40,9 @@ const SubjectAccordion = ({ item, resources }: Props) => {
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
           />
         )}
-        ListEmptyComponent={<DeleteSubjectButton subjectId={item._id} />}
+        ListEmptyComponent={
+          <DeleteSubjectButton refresh={refetchSubjects} subjectId={item._id} />
+        }
       />
     </List.Accordion>
   );

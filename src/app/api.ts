@@ -48,7 +48,7 @@ export const api = createApi({
     deleteSubject: builder.mutation({
       query: ({ userId, subjectId }) => ({
         url: `/subjects/${userId}/${subjectId}`,
-        method: "POST",
+        method: "DELETE",
       }),
     }),
   }),

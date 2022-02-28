@@ -8,9 +8,10 @@ import { useSelector } from "react-redux";
 
 interface Props {
   subjectId: string;
+  refresh: () => void;
 }
 
-const DeleteSubjectButton = ({ subjectId }: Props) => {
+const DeleteSubjectButton = ({ subjectId, refresh }: Props) => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
   const [deleteSubject, { isLoading }] = useDeleteSubjectMutation();
   const [confirmDialogVisible, setConfirmDialogVisible] = React.useState(false);
@@ -21,6 +22,7 @@ const DeleteSubjectButton = ({ subjectId }: Props) => {
   const handleDeleteSubject = () => {
     deleteSubject({ userId, subjectId });
     hideConfirmDialog();
+    refresh();
   };
 
   return (

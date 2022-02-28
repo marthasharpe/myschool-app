@@ -17,7 +17,7 @@ const HomeScreen = () => {
   return (
     <>
       <Appbar.Header statusBarHeight={32}>
-        <Appbar.Content title="MySchool" />
+        <Appbar.Content title="BrainSorter" />
         <Appbar.Action icon="logout" onPress={handleLogout} />
       </Appbar.Header>
       <FABButton />

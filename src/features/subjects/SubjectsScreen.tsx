@@ -1,7 +1,7 @@
 import { useGetResourcesQuery, useGetSubjectsQuery } from "app/api";
 import { RootState } from "app/store";
 import { StyleSheet, Text, FlatList, SafeAreaView, View } from "react-native";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import { useSelector } from "react-redux";
 import SubjectAccordion from "features/subjects/SubjectAccordion";
 
@@ -24,13 +24,25 @@ const SubjectsScreen = () => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView>
       {subjectData && resourceData && (
         <FlatList
           data={subjectData.subjects}
           renderItem={({ item }) => (
-            <SubjectAccordion resources={resourceData.resources} item={item} />
+            <SubjectAccordion
+              resources={resourceData.resources}
+              refetchSubjects={refetch}
+              item={item}
+            />
           )}
           keyExtractor={(item) => item._id}
           onRefresh={refetch}

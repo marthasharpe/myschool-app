@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useDispatch, useSelector } from "react-redux";
 import { persistor, RootState } from "app/store";
-import HomeScreen from "features/home/HomeScreen";
 import AuthNavigator from "./AuthNavigator";
 import jwt_decode from "jwt-decode";
 import { logout } from "features/authentication/AuthSlice";
 import * as SplashScreen from "expo-splash-screen";
 import React from "react";
+import HomeNavigator from "./HomeNavigator";
 
 interface JWTToken {
   email: string;
@@ -55,7 +55,7 @@ const RootNavigator = () => {
       {!token ? (
         <RootStack.Screen name="Auth" component={AuthNavigator} />
       ) : (
-        <RootStack.Screen name="Home" component={HomeScreen} />
+        <RootStack.Screen name="Home" component={HomeNavigator} />
       )}
     </RootStack.Navigator>
   );
