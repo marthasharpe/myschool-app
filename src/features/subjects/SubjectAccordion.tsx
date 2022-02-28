@@ -2,6 +2,7 @@ import * as React from "react";
 import { FlatList, ListRenderItem } from "react-native";
 import { IconButton, List } from "react-native-paper";
 import { Resource, Subject } from "types/types";
+import DeleteSubjectButton from "./DeleteSubject";
 
 interface Props {
   item: ListRenderItem<Subject>;
@@ -38,6 +39,7 @@ const SubjectAccordion = ({ item, resources }: Props) => {
             right={(props) => <List.Icon {...props} icon="chevron-right" />}
           />
         )}
+        ListEmptyComponent={<DeleteSubjectButton subjectId={item._id} />}
       />
     </List.Accordion>
   );

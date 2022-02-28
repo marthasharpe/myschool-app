@@ -3,7 +3,7 @@ import { RootState } from "app/store";
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
-import ResourceListItem from "components/ResourceListItem";
+import ResourceListItem from "features/resources/ResourceListItem";
 
 const ResourcesScreen = () => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);

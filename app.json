@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myschool-app",
-    "slug": "myschool-app",
+    "name": "BrainSorter",
+    "slug": "BrainSorter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,7 +10,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "entryPoint": "./src/app/App.js",
+    "entryPoint": "./src/app/App.tsx",
     "updates": {
       "fallbackToCacheTimeout": 0
     },

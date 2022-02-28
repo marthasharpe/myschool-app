@@ -1,9 +1,8 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { useTheme } from "react-native-paper";
-import DashboardScreen from "screens/dashboard/DashboardScreen";
-import ResourcesScreen from "screens/resources/ResourcesScreen";
-import SubjectsScreen from "screens/subjects/SubjectsScreen";
-import TodosScreen from "screens/todos/TodosScreen";
+import DashboardScreen from "features/dashboard/DashboardScreen";
+import ResourcesScreen from "features/resources/ResourcesScreen";
+import SubjectsScreen from "features/subjects/SubjectsScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -25,11 +24,6 @@ const BottomTabs = () => {
         name="Subjects"
         options={{ tabBarIcon: "folder-open" }}
         component={SubjectsScreen}
-      />
-      <Tab.Screen
-        name="Todos"
-        options={{ tabBarIcon: "format-list-checkbox" }}
-        component={TodosScreen}
       />
     </Tab.Navigator>
   );

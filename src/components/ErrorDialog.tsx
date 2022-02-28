@@ -6,7 +6,7 @@ interface Props {
   isVisible: boolean;
   hideDialog: () => void;
 }
-const ErrorDialogue = ({ message, isVisible, hideDialog }: Props) => {
+const ErrorDialog = ({ message, isVisible, hideDialog }: Props) => {
   return (
     <Portal>
       <Dialog visible={isVisible} onDismiss={hideDialog}>
@@ -22,4 +22,4 @@ const ErrorDialogue = ({ message, isVisible, hideDialog }: Props) => {
   );
 };
 
-export default ErrorDialogue;
+export default ErrorDialog;

@@ -3,7 +3,7 @@ import { RootState } from "app/store";
 import { StyleSheet, Text, FlatList, SafeAreaView, View } from "react-native";
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
-import SubjectAccordion from "components/SubjectAccordion";
+import SubjectAccordion from "features/subjects/SubjectAccordion";
 
 const SubjectsScreen = () => {
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
@@ -26,7 +26,7 @@ const SubjectsScreen = () => {
 
   return (
     <SafeAreaView>
-      {subjectData && (
+      {subjectData && resourceData && (
         <FlatList
           data={subjectData.subjects}
           renderItem={({ item }) => (
@@ -35,6 +35,7 @@ const SubjectsScreen = () => {
           keyExtractor={(item) => item._id}
           onRefresh={refetch}
           refreshing={isLoading}
+          ListFooterComponent={<View style={styles.empty}></View>}
         />
       )}
     </SafeAreaView>
@@ -46,6 +47,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  empty: {
+    height: 88,
   },
 });
 

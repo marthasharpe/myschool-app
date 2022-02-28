@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import authReducer from "screens/authentication/AuthSlice";
+import authReducer from "features/authentication/AuthSlice";
 import createSecureStore from "redux-persist-expo-securestore";
 import { persistStore, persistCombineReducers } from "redux-persist";
 import { api } from "./api";

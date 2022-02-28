@@ -20,7 +20,7 @@ const LandingScreen = ({ navigation }: Props) => {
     >
       <SafeAreaView style={styles.container}>
         <View style={styles.titleContainer}>
-          <Title style={styles.title}>MySchool</Title>
+          <Title style={styles.title}>BrainSorter</Title>
         </View>
         <View style={styles.buttonGroup}>
           <Button
@@ -43,4 +43,4 @@ const LandingScreen = ({ navigation }: Props) => {
   );
 };
 
-export default LandingScreen;
+export default React.memo(LandingScreen);

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { ListRenderItem, StyleSheet } from "react-native";
-import { Avatar, Card, IconButton, List, useTheme } from "react-native-paper";
+import { StyleSheet } from "react-native";
+import { List, useTheme } from "react-native-paper";
 import { Resource } from "types/types";
 
 interface Props {

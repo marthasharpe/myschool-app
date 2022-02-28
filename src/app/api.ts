@@ -45,6 +45,12 @@ export const api = createApi({
       }),
       providesTags: ["Subjects"],
     }),
+    deleteSubject: builder.mutation({
+      query: ({ userId, subjectId }) => ({
+        url: `/subjects/${userId}/${subjectId}`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -53,4 +59,5 @@ export const {
   useSignupMutation,
   useGetResourcesQuery,
   useGetSubjectsQuery,
+  useDeleteSubjectMutation,
 } = api;

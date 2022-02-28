@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useDispatch, useSelector } from "react-redux";
 import { persistor, RootState } from "app/store";
-import HomeScreen from "screens/home/HomeScreen";
+import HomeScreen from "features/home/HomeScreen";
 import AuthNavigator from "./AuthNavigator";
 import jwt_decode from "jwt-decode";
-import { logout } from "screens/authentication/AuthSlice";
-// import * as SplashScreen from "expo-splash-screen";
+import { logout } from "features/authentication/AuthSlice";
+import * as SplashScreen from "expo-splash-screen";
 import React from "react";
 
 interface JWTToken {
@@ -26,18 +26,24 @@ const RootNavigator = () => {
     dispatch(logout());
   };
 
-  React.useEffect(() => {
-    // const loadApp = async () => {
-    // await SplashScreen.preventAutoHideAsync();
-    if (token) {
-      const decodedToken: JWTToken = jwt_decode(token);
-      if (Date.now() >= decodedToken.exp * 1000) {
-        handleLogout();
-      }
+  const checkTokenExpired = (jwt: string) => {
+    const decodedToken: JWTToken = jwt_decode(jwt);
+    if (Date.now() >= decodedToken.exp * 1000) {
+      handleLogout();
     }
-    // await SplashScreen.hideAsync();
-    // };
-    // loadApp();
+  };
+
+  React.useEffect(() => {
+    const loadApp = async () => {
+      await SplashScreen.preventAutoHideAsync();
+      if (token) {
+        checkTokenExpired(token);
+        //wait one second to allow navigation before hiding splash screen
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await SplashScreen.hideAsync();
+      }
+    };
+    loadApp();
   }, [token]);
 
   return (

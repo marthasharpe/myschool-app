@@ -4,14 +4,15 @@ import BottomTabs from "navigation/BottomTabs";
 import FABButton from "components/FABButton";
 import { persistor } from "app/store";
 import { useDispatch } from "react-redux";
-import { logout } from "screens/authentication/AuthSlice";
+import { logout } from "features/authentication/AuthSlice";
+import React from "react";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const handleLogout = () => {
+  const handleLogout = React.useCallback(() => {
     persistor.purge();
     dispatch(logout());
-  };
+  }, []);
 
   return (
     <>
@@ -26,4 +27,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default React.memo(HomeScreen);

@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { IconButton } from "react-native-paper";
-import LandingScreen from "screens/authentication/LandingScreen";
-import LoginScreen from "screens/authentication/LoginScreen";
-import SignupScreen from "screens/authentication/SignupScreen";
+import LandingScreen from "features/authentication/LandingScreen";
+import LoginScreen from "features/authentication/LoginScreen";
+import SignupScreen from "features/authentication/SignupScreen";
 
 export type AuthStackParamList = {
   Landing: undefined;

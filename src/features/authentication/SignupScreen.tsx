@@ -1,5 +1,5 @@
 import { useSignupMutation } from "app/api";
-import ErrorDialogue from "components/ErrorDialogue";
+import ErrorDialog from "components/ErrorDialog";
 import * as React from "react";
 import { useCallback } from "react";
 import {
@@ -28,7 +28,7 @@ const SignupScreen = () => {
   const [passwordError, setPasswordError] = React.useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = React.useState(true);
   const [errorDialogVisible, setErrorDialogVisible] = React.useState(false);
-  const [errorDialogMessage, setErrorDialogueMessage] = React.useState("");
+  const [errorDialogMessage, setErrorDialogMessage] = React.useState("");
 
   const showErrorDialog = () => setErrorDialogVisible(true);
   const hideErrorDialog = () => setErrorDialogVisible(false);
@@ -71,7 +71,7 @@ const SignupScreen = () => {
         dispatch(setAuthData({ token, user }));
       }
       if ("error" in result) {
-        setErrorDialogueMessage(result.error.data.message);
+        setErrorDialogMessage(result.error.data.message);
         showErrorDialog();
       }
     } catch (e) {
@@ -85,7 +85,7 @@ const SignupScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.screen}
       >
-        <ErrorDialogue
+        <ErrorDialog
           isVisible={errorDialogVisible}
           hideDialog={hideErrorDialog}
           message={errorDialogMessage}
